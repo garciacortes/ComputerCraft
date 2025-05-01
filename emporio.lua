@@ -1,7 +1,7 @@
 monitor = peripheral.find("monitor")
 ct = colors.blue
 ctn = colors.purple
-cts = colors.yellow
+cts = colors.orange
 
 term.redirect(monitor)
 
