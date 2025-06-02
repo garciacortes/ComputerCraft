@@ -10,4 +10,4 @@ COMO BAIXAR OS ARQUIVOS PARA QUALQUER COMPUTADOR
 
 CODIGO PARA BAIXAR O ARQUIVO: 
 
-response = http.get("link").readAll(); file = fs.open("nome.lua"); file.write(response); file.close()
+response = http.get("link").readAll(); file = fs.open("nome.lua", "w"); file.write(response); file.close()
