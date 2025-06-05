@@ -18,14 +18,14 @@ local dados = {
 }
 
 -- Bom aqui e bem simples! e voce pode alterar a forma de saida
-file.writeLine("")
-file.writeLine("Registro de Leitura:")
-file.writeLine("")
-file.writeLine("Pressao: " .. dados.pressao .. " Pa")
-file.writeLine("Temperatura: " .. dados.temperatura .. " C")
-file.writeLine("Radiacao: " .. dados.radiacao .. " mSv")
-file.writeLine("Campo Eletromagnetico: " .. dados.campoEletromagnetico .. " uT")
-file.writeLine("Campo Gravitacional: " .. dados.campoGravitacional .. " m/s")
+file.writeLine("print(\"\")")
+file.writeLine("print(\"Registro de Leitura:\")")
+file.writeLine("print(\"\")")
+file.writeLine("print(\"Pressao: " .. dados.pressao .. " Pa\")")
+file.writeLine("print(\"Temperatura: " .. dados.temperatura .. " C\")")
+file.writeLine("print(\"Radiacao: " .. dados.radiacao .. " mSv\")")
+file.writeLine("print(\"Campo Eletromagnetico: " .. dados.campoEletromagnetico .. " uT\")")
+file.writeLine("print(\"Campo Gravitacional: " .. dados.campoGravitacional .. " m/s\")")
 
 file.close()
 
