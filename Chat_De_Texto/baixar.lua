@@ -43,7 +43,7 @@ local arquivos = dofile("arquivos_ids.lua")
  
 -- Buscar o ID do atualizador_master.lua
 local atualizadorID = nil
-for nomeArquivo, arquivoID in ipairs(arquivos) do
+for nomeArquivo, arquivoID in pairs(arquivos) do
     if nomeArquivo == "atualizador_master.lua" then
         atualizadorID = arquivoID
         break
