@@ -29,7 +29,7 @@ print("\n📥 Baixando lista de arquivos (arquivos_ids.lua)...")
  
 if fs.exists("arquivos_ids.lua") then fs.delete("arquivos_ids.lua") end
     response = http.get(idArquivos).readAll()
-    file = fs.open("arquivos_ids.lua, "w")
+    file = fs.open("arquivos_ids.lua", "w")
     file.write(response)
     file.close()
 
