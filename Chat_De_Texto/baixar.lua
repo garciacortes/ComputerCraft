@@ -24,11 +24,15 @@ if not modemAberto then
 end
  
 -- Baixar arquivos_ids.lua da nuvem
-local idArquivos = "fkwSV88Xo"  -- ✅ ID do arquivos_ids.lua
+local idArquivos = "https://raw.githubusercontent.com/garciacortes/ComputerCraft/refs/heads/main/Chat_De_Texto/arquivos_ids.lua"  -- ✅ ID do arquivos_ids.lua
 print("\n📥 Baixando lista de arquivos (arquivos_ids.lua)...")
  
 if fs.exists("arquivos_ids.lua") then fs.delete("arquivos_ids.lua") end
-shell.run("pastebin get "..idArquivos.." arquivos_ids.lua")
+    response = http.get(idArquivos).readAll()
+    file = fs.open("arquivos_ids.lua, "w")
+    file.write(response)
+    file.close()
+
  
 if not fs.exists("arquivos_ids.lua") then
     print("❌ Erro ao baixar o arquivos_ids.lua!")
@@ -49,7 +53,10 @@ end
 if atualizadorID then
     print("\n📥 Baixando o atualizador_master.lua...")
     if fs.exists("atualizador_master.lua") then fs.delete("atualizador_master.lua") end
-    shell.run("pastebin get "..atualizadorID.." atualizador_master.lua")
+    response = http.get(idArquivos).readAll()
+    file = fs.open("arquivos_ids.lua, "w")
+    file.write(response)
+    file.close()
 else
     print("❌ Não encontrei o ID do atualizador_master.lua na lista!")
     return
