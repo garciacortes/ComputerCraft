@@ -21,7 +21,10 @@ local idsFile = "arquivo_ids.lua"
 -- Baixar a lista de IDs da nuvem
 if fs.exists(idsFile) then fs.delete(idsFile) end
 print("📥 Baixando lista de IDs...")
-shell.run("pastebin get "..idsPastebin.." "..idsFile)
+response = http.get(idsPastebin).readAll()
+file = fs.open(idsFile, "w")
+file.write(response)
+file.close()
  
 if not fs.exists(idsFile) then
     print("❌ Falha ao baixar o arquivo de IDs!")
@@ -45,7 +48,10 @@ print("\n⬇️ Baixando os arquivos da nuvem...")
  
 for nome, pastebinID in pairs(arquivos) do
     print("➡️ "..nome.." ← "..pastebinID)
-    shell.run("pastebin get "..pastebinID.." "..nome)
+    response = http.get(pastebinID).readAll()
+    file = fs.open(nome, "w")
+    file.write(response)
+    file.close()
 end
  
 print("\n✅ Atualização completa!")
