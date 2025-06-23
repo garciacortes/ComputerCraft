@@ -15,7 +15,7 @@ for _, side in ipairs(sides) do
 end
  
 -- ID do arquivo de IDs
-local idsPastebin = "fkwSV88X"
+local idsPastebin = "https://raw.githubusercontent.com/garciacortes/ComputerCraft/refs/heads/main/Chat_De_Texto/arquivos_ids.lua"
 local idsFile = "arquivo_ids.lua"
  
 -- Baixar a lista de IDs da nuvem
