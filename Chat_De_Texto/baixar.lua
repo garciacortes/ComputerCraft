@@ -2,7 +2,7 @@ term.clear()
 term.setCursorPos(1,1)
  
 print("===================================")
-print("    W.E.T.S - INSTALADOR AUTOMÁTICO")
+print(" W.E.T.S - Instalador Inteligente ")
 print("===================================\n")
  
 -- Abrir modem automaticamente
@@ -23,62 +23,40 @@ if not modemAberto then
     return
 end
  
--- Testar comunicação com a nuvem (opcional)
-print("\n🔍 Testando conexão com o servidor de nuvem...")
-rednet.broadcast("PING:baixa.lua")
-local id, resposta = rednet.receive(2)
-if resposta then
-    print("✅ Conexão com a nuvem OK! ID do servidor: " .. id)
-else
-    print("⚠️ Nenhuma resposta da nuvem, prosseguindo offline...")
+-- Baixar arquivos_ids.lua da nuvem
+local idArquivos = "fkwSV88Xo"  -- ✅ ID do arquivos_ids.lua
+print("\n📥 Baixando lista de arquivos (arquivos_ids.lua)...")
+ 
+if fs.exists("arquivos_ids.lua") then fs.delete("arquivos_ids.lua") end
+shell.run("pastebin get "..idArquivos.." arquivos_ids.lua")
+ 
+if not fs.exists("arquivos_ids.lua") then
+    print("❌ Erro ao baixar o arquivos_ids.lua!")
+    return
 end
  
--- Lista completa dos arquivos (Versão 5.3)
-local arquivos = {
-    {nome = "menu.lua", id = "EJQ2PzKr"},
-    {nome = "chat_server.lua", id = "b15WbJdn"},
-    {nome = "chat_client.lua", id = "6yTXZnju"},
-    {nome = "versao.lua", id = "g3ykXWf5"},
-    {nome = "atualizar_server.lua", id = "1i2nFHi6"},
-    {nome = "calculadora.lua", id = "yfdrVZ31"},
-    {nome = "atualizador_master.lua", id = "uZ6QV67i"},
-    {nome = "server.lua", id = "YfGzJSxG"},
-    {nome = "música.lua", id = "hmG6Ek2R"},
-    {nome = "speaker_receiver.lua", id = "YHHmQcrZ"},
-    {nome = "decodificadores.lua", id = "bNEPLHA6"},
-    {nome = "pocket_client.lua", id = "EAuKVMKB"},
-    {nome = "anotações.lua", id = "wnu1q4dU"},
-    {nome = "planilha.lua", id = "D24zK5zj"},
-    {nome = "email_server.lua", id = "BqdgQ1ym"},
-    {nome = "email_client.lua", id = "Gb7i51mq"},
-    {nome = "wifi_server.lua", id = "g9XsRj2a"},
-    {nome = "arquivos_ids.lua", id = "fkwSV88X"}
-}
+local arquivos = dofile("arquivos_ids.lua")
  
--- Animação de download
-local function animacao(nome)
-    local barra = {"[          ]", "[=         ]", "[==        ]", "[===       ]", "[====      ]", "[=====     ]", "[======    ]", "[=======   ]", "[========  ]", "[========= ]", "[==========]"}
-    for i = 1, #barra do
-        term.setCursorPos(1, select(2, term.getCursorPos()))
-        write("📥 Baixando "..nome.." "..barra[i].."   ")
-        sleep(0.05)
-    end
-end
- 
--- Download dos arquivos
+-- Buscar o ID do atualizador_master.lua
+local atualizadorID = nil
 for _, arquivo in ipairs(arquivos) do
-    if fs.exists(arquivo.nome) then
-        print("\n🔍 Atualizando "..arquivo.nome.." ...")
-        fs.delete(arquivo.nome)
+    if arquivo.nome == "atualizador_master.lua" then
+        atualizadorID = arquivo.pastebinID
+        break
     end
-    animacao(arquivo.nome)
-    shell.run("pastebin get "..arquivo.id.." "..arquivo.nome)
-    print(" ✅")
 end
  
-print("\n✅ Todos os arquivos foram baixados com sucesso!")
+if atualizadorID then
+    print("\n📥 Baixando o atualizador_master.lua...")
+    if fs.exists("atualizador_master.lua") then fs.delete("atualizador_master.lua") end
+    shell.run("pastebin get "..atualizadorID.." atualizador_master.lua")
+else
+    print("❌ Não encontrei o ID do atualizador_master.lua na lista!")
+    return
+end
  
--- Inicia o servidor
-print("\n🚀 Iniciando o servidor...")
+-- Rodar o atualizador_master.lua
+print("\n🚀 Iniciando o Atualizador Master...")
 sleep(2)
-shell.run("server.lua")
+shell.run("atualizador_master.lua")
+ 
