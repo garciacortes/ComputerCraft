@@ -51,7 +51,10 @@ if fs.exists("chat_server.lua") then
 end
  
 print("\n📥 Baixando o novo chat_server.lua...")
-shell.run("pastebin get " .. idServer .. " chat_server.lua")
+response = http.get(idServer).readAll()
+file = fs.open("chat_server.lua", "w")
+file.write(response)
+file.close()
  
 if fs.exists("chat_server.lua") then
     print("✅ Servidor atualizado com sucesso!")
