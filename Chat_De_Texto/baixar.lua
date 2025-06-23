@@ -53,8 +53,8 @@ end
 if atualizadorID then
     print("\n📥 Baixando o atualizador_master.lua...")
     if fs.exists("atualizador_master.lua") then fs.delete("atualizador_master.lua") end
-    response = http.get(idArquivos).readAll()
-    file = fs.open("arquivos_ids.lua, "w")
+    response = http.get(atualizadorID).readAll()
+    file = fs.open("atualizador_master.lua, "w")
     file.write(response)
     file.close()
 else
