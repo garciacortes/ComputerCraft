@@ -1,7 +1,5 @@
 local files = {
-  d20 = "https://raw.githubusercontent.com/garciacortes/ComputerCraft/refs/heads/main/d20Nono/d20.lua",
-  pixelui = "https://raw.githubusercontent.com/garciacortes/ComputerCraft/refs/heads/main/d20Nono/pixelui.lua",
-  shrekbox = "https://raw.githubusercontent.com/garciacortes/ComputerCraft/refs/heads/main/d20Nono/shrekbox.lua"
+  startup = "https://raw.githubusercontent.com/garciacortes/ComputerCraft/refs/heads/main/AntenaArkanis/startup.lua"
 }
 
 for name, url in pairs(files) do
